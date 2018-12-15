@@ -1,0 +1,12 @@
+.topbar{
+	display: flex;
+	background: #2E4756;
+	padding: 1%;
+	/*flex-flow: row wrap;*/
+	justify-content: flex-end;
+
+}
+.topbar > div{
+	display: flex;
+
+}
