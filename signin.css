@@ -1,0 +1,195 @@
+body{
+	background: #ED9B40;
+	width: 100%;
+}
+.topbar{
+	display: flex;
+	background: #2E4756;
+	padding: 0.1%;
+	width: 100%;
+	flex-flow: row wrap;
+	justify-content: flex-end;
+}
+
+.topbar a{
+	display: inline-block;
+	padding: 5px;
+	background: #ED9B40;
+	color: black;
+}
+
+a:visited {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #61C9A8;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.sectionmid{
+	display: flex;
+	padding: 0.1%;
+	width: 40%;
+	justify-content: flex-end;
+	/*background: #F6F7F8;*/
+}
+
+.sectiontop{
+	display: flex;
+	flex-direction: row-reverse;
+	background: #FFEEDB;
+
+}
+
+button {
+    /*background-color: #4CAF50; /* Green */
+    border: none;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.report:hover {
+    background-color: #BA3B46;
+    color: black;
+}
+.donate:hover {
+    background-color: #61C9A8;
+    color: #fff ;
+}
+.main {
+	display: flex;
+	align-items: center;
+}
+
+.signin {
+	display: flex;
+	justify-content: flex-end;
+	padding: 6%;
+	width: 50%;
+	background: #ED9B40;
+}
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+input[type=password], select, textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=login] {
+    width: 90%;
+    background-color: #F6F7F8;
+    color: black;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+input[type=login]:hover {
+    background-color: #AA8F66;
+}
+.reportertitle {
+	display: flex;
+	justify-content: flex-start;
+	padding: 0.1%;
+	width: 60%;
+	/*background: #2EC4B6;*/
+}
+.mainstart {
+	display: flex;
+	justify-content: flex-start;
+	width: 100%;
+	background: #2EC4B6;
+}
+
+.sectionend{
+	display: flex;
+	justify-content: center;
+	padding: 2%;
+	background: #011627;
+}
+.footer{
+	margin: 0;
+	display: flex;
+	justify-content: center;
+}
+.reportrecord {
+	display: flex;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    width: 80%;
+    flex-wrap: wrap;
+	padding: 2%;
+	
+}
+
+.col-1 {
+    float: left;
+    width: 40%;
+    margin-top: 6px;
+}
+
+.col-2 {
+    float: left;
+    width: 60%;
+    margin-top: 6px;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+input[type=submit] {
+    background-color: #f2f2f2;
+    color: black;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+select option:hover {
+	background: black
+}
+input[type=submit]:hover {
+    background-color: #ED9B40;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+.footer{
+	background: red;
+}
