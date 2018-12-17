@@ -84,10 +84,20 @@ button {
 	display: flex;
 	justify-content: flex-end;
 	padding: 6%;
-	width: 30%;
+	width: 50%;
 	background: #ED9B40;
 }
 input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+input[type=password], select, textarea {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -119,7 +129,7 @@ input[type=login]:hover {
 .mainstart {
 	display: flex;
 	justify-content: flex-start;
-	width: 70%;
+	width: 100%;
 	background: #2EC4B6;
 }
 
@@ -133,4 +143,53 @@ input[type=login]:hover {
 	margin: 0;
 	display: flex;
 	justify-content: center;
+}
+.reportrecord {
+	display: flex;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    width: 80%;
+    flex-wrap: wrap;
+	padding: 2%;
+	
+}
+
+.col-1 {
+    float: left;
+    width: 40%;
+    margin-top: 6px;
+}
+
+.col-2 {
+    float: left;
+    width: 60%;
+    margin-top: 6px;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+input[type=submit] {
+    background-color: #f2f2f2;
+    color: black;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+select option:hover {
+	background: black
+}
+input[type=submit]:hover {
+    background-color: #ED9B40;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+.footer{
+	background: red;
 }
