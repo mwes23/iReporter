@@ -190,3 +190,21 @@ label {
     display: inline-block;
 }
 
+.columnreport {
+    float: left;
+    width: 33.33%;
+    padding: 15px;
+}
+
+.rowreport:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+@media screen and (max-width:600px) {
+    .columnreport {
+        width: 100%;
+    }
+}
