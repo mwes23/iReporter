@@ -41,12 +41,12 @@ a:active {
 	padding: 0.1%;
 	width: 40%;
 	justify-content: flex-end;
-	/*background: #F6F7F8;*/
+	background: #F6F7F8;
 }
 
 .sectiontop{
 	display: flex;
-	flex-direction: row-reverse;
+	flex-direction: row;
 	background: #FFEEDB;
 
 }
@@ -66,7 +66,6 @@ button {
     transition-duration: 0.4s;
     cursor: pointer;
 }
-
 .report:hover {
     background-color: #BA3B46;
     color: black;
@@ -106,7 +105,7 @@ input[type=password], select, textarea {
     border-radius: 4px;
     box-sizing: border-box;
 }
-input[type=login] {
+input[type=button] {
     width: 90%;
     background-color: #F6F7F8;
     color: black;
@@ -116,15 +115,15 @@ input[type=login] {
     border-radius: 4px;
     cursor: pointer;
 }
-input[type=login]:hover {
+input[type=button]:hover {
     background-color: #AA8F66;
 }
 .reportertitle {
 	display: flex;
 	justify-content: flex-start;
 	padding: 0.1%;
-	width: 60%;
-	/*background: #2EC4B6;*/
+	width: 30%;
+	background: #FFEEDB;
 }
 .mainstart {
 	display: flex;
@@ -190,6 +189,4 @@ label {
     padding: 12px 12px 12px 0;
     display: inline-block;
 }
-.footer{
-	background: red;
-}
+
