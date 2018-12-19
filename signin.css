@@ -19,7 +19,7 @@ body{
 }
 
 a:visited {
-  color: pink;
+  color: black;
   background-color: transparent;
   text-decoration: none;
 }
@@ -31,7 +31,7 @@ a:hover {
 }
 
 a:active {
-  color: yellow;
+  color: black;
   background-color: transparent;
   text-decoration: underline;
 }
