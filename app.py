@@ -72,6 +72,33 @@ def oneflags():
 		}
 		return jsonify(response),200
 
+@app.route('/v1/editflag', methods=['POST'])
+def editflag():
+	if len(redflag_list) < 1:
+		response = {
+		"status": 404,
+		"error": "There are no red flags"
+		}
+		return jsonify(response),400
+	if len(redflag_list) >= 1:
+		redflagid = random.randint(1,len(redflag_list))
+		values = request.get_json()
+		for value in values:
+			requestedvalues = ["title","desc"]
+			if requestedvalues not in value:
+				response = {
+				"status": 404,
+				"error": "missing parameters"
+				}
+			return jsonify(response),404
+
+		redflag_list[redflagid] = [values]
+		response = {
+		"status":200,
+		"data":redflag_list.to_json()
+		}
+		return jsonify(response),200
+
 
 if __name__ == '__main__':
 	app.run(debug=True)
