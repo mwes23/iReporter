@@ -1,20 +1,20 @@
 from flask import Flask,jsonify,request
-from models import Redflag
+from models import Incident
 import random
 
 
 app = Flask(__name__)
 
-redflag_list = [{	"title":"corruption",
-	"desc":"isdflkwf"}]
+redflag_list = []
+object_id = 0
 	
 
 @app.route('/')
 def hello():
 	return 'hello world'
 
-@app.route('/v1/redflag', methods=['POST'])
-def createdflag():
+@app.route('/v1/red-flags', methods=['POST'])
+def createredflag():
 	values = request.get_json()	
 	if not values:
 		response = {
@@ -23,23 +23,25 @@ def createdflag():
 		}
 		return jsonify(response),400
 
-	requestedvalues = ['title','desc']
+	requestedvalues = ["title","created_on","created_by","incident_type","location","status","images","video","comment"]
 	if not all(item in values for item in requestedvalues):
 		response = {
 		"status": 404,
 		"error": "missing parameters"
 		}
 		return jsonify(response),400
-	redflag = Redflag(values['title'],values['desc'])
+	redflag = Incident(abject_id, values['title'],values['created_on'],values["created_by"],values["incident_type"],values["location"],values["status"],values["images"],values["video"],values["comment"])
 	redflag_list.append(redflag)
-	flagers=[i.__dict__ for i in redflag_list]
+	object_id +=1
 	response = {
 	"status":"200",
-	"data": flagers
+	"data": redflag.to_json(),
+	"id": object_id,
+	"message":"Created red-flag record",
 	}
 	return jsonify(response),201
 
-@app.route('/v1/allflags', methods=['GET'])
+@app.route('/v1/red-flags', methods=['GET'])
 def allflags():
 	flags = []
 		
@@ -55,9 +57,10 @@ def allflags():
 		"status":200,
 		"data": flags	
 		}
+		return jsonify(response),200
 
-@app.route('/v1/oneflag', methods=['GET'])
-def oneflags():
+@app.route('/v1/red-flags/<red-flag-id>', methods=['GET'])
+def oneflag():
 	if len(redflag_list) < 1:
 		response = {
 		"status": 404,
@@ -65,7 +68,7 @@ def oneflags():
 		}
 		return jsonify(response),400
 	if len(redflag_list) >= 1:
-		redflagid = random.randint(1,len(redflag_list))
+		redflagid = object_id += 1
 		flag = redflag_list[redflagid]
 		response = {
 		"status":200,
@@ -73,34 +76,66 @@ def oneflags():
 		}
 		return jsonify(response),200
 
-@app.route('/v1/editflag', methods=['POST'])
-def editflag():
-	if len(redflag_list) < 1:
+@app.route('/v1/red-flags/<red-flag-id>/location', methods=['PATCH'])
+def editflaglocation(redflagid):
+	if redflagid == '' or redflagid == None:
 		response = {
-		"status": 404,
-		"error": "There are no red flags"
+		"status":404,
+		"error": 'No ID given'
 		}
-		return jsonify(response),400
+		return jsonify(response),404
 	if len(redflag_list) >= 1:
-		redflagid = random.randint(1,len(redflag_list))
+		redflagobj = redflag_list[int(redflagid)]
 		values = request.get_json()
-		for value in values:
-			requestedvalues = ["title","desc"]
+		requestedvalues = ["location"]
+			if requestedvalues not in value :
+				response = {
+				"status": 404,
+				"error": "missing parameters"
+				}
+				return jsonify(response),404
+		redflag_dict = redflagobj.to_json()
+		redflag_dict['location'] = values["location"]
+		response = {
+		"status":200,
+		"data":redflag_dict,
+		"Id":redflagid,
+		"message":"Updated red-flag record’s location"
+		}
+		return jsonify(response),200
+
+@app.route('/v1/red-flags/<red-flag-id>/location', methods=['PATCH'])
+def editflagcomments(redflagid):
+	if redflagid == '' or redflagid == None:
+		response = {
+		"status":404,
+		"error": 'No ID given'
+		}
+		return jsonify(response),404
+
+	if len(redflag_list) >= 1:
+		redflagobj = redflag_list[int(redflagid)]
+		values = request.get_json()
+		requestedvalues = ["comment"]
 			if requestedvalues not in value:
 				response = {
 				"status": 404,
 				"error": "missing parameters"
 				}
 				return jsonify(response),404
-
-		redflag_list[redflagid] = [values]
+		redflag_dict = redflagobj.to_json()
+		redflag_dict['comment'] = values["comment"]
 		response = {
 		"status":200,
-		"data":redflag_list.to_json()
+		"data":redflag_dict,
+		"Id":redflagid,
+		"message":"Updated red-flag record’s comment"
 		}
 		return jsonify(response),200
 
-@app.route('/v1/delflag', methods=['GET'])
+
+
+@app.route('/v1/red-flags/<red-flag-id>', methods=['DELETE'])
 def delflag():
 	if len(redflag_list) < 1:
 		response = {
@@ -109,10 +144,13 @@ def delflag():
 		}
 		return jsonify(response),400
 	if len(redflag_list) >= 1:
-		deleted = redflag_list.pop()
+		redflagid = random.randint(1,len(redflag_list))
+		deleted = redflag_list.pop(redflagid)
 		response = {
 		"status": 200,
-		"data":deleted
+		"data":deleted,
+		"Id":redflagid
+		"message":"red-flag record has been deleted"
 		}
 		return jsonify(response),200
 
