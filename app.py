@@ -5,7 +5,8 @@ import random
 
 app = Flask(__name__)
 
-redflag_list = []
+redflag_list = [{	"title":"corruption",
+	"desc":"isdflkwf"}]
 	
 
 @app.route('/')
@@ -90,12 +91,28 @@ def editflag():
 				"status": 404,
 				"error": "missing parameters"
 				}
-			return jsonify(response),404
+				return jsonify(response),404
 
 		redflag_list[redflagid] = [values]
 		response = {
 		"status":200,
 		"data":redflag_list.to_json()
+		}
+		return jsonify(response),200
+
+@app.route('/v1/delflag', methods=['GET'])
+def delflag():
+	if len(redflag_list) < 1:
+		response = {
+		"status": 404,
+		"error": "There are no red flags"
+		}
+		return jsonify(response),400
+	if len(redflag_list) >= 1:
+		deleted = redflag_list.pop()
+		response = {
+		"status": 200,
+		"data":deleted
 		}
 		return jsonify(response),200
 
