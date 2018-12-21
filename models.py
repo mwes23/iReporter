@@ -1,9 +1,9 @@
-class model():
+class Redflag():
 	"""docstring for ClassName"""
-	def __init__(self, title,description):
+	def __init__(self, title,desc):
 		self.title = title
-		self.description = description
+		self.desc = desc
 
-	def to_json(self,title,description):
-		return {title:self.title,description:self.description}
+	def to_json(self,title,desc):
+		return {"title":self.title, "desc":self.description}
 		

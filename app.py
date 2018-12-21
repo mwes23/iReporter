@@ -1,8 +1,11 @@
 from flask import Flask,jsonify,request
+from models import Redflag
+import random
 
 
 app = Flask(__name__)
-redflags = []
+
+redflag_list = []
 	
 
 @app.route('/')
@@ -15,20 +18,23 @@ def createdflag():
 	if not values:
 		response = {
 		"status": 400,
-		"message":"No Input",
+		"error":"No Input",
 		}
 		return jsonify(response),400
 
-	requestedvalues = ['title','description']
+	requestedvalues = ['title','desc']
 	if not all(item in values for item in requestedvalues):
 		response = {
-		"message":"missing parameter",
+		"status": 404,
+		"error": "missing parameters"
 		}
-	return jsonify(response),400
-	redflag = model(values['title'],values['description'])
-	redflags.append(redflag)
+		return jsonify(response),400
+	redflag = Redflag(values['title'],values['desc'])
+	redflag_list.append(redflag)
+	flagers=[i.__dict__ for i in redflag_list]
 	response = {
-	"message":"Success"
+	"status":"200",
+	"data": flagers
 	}
 	return jsonify(response),201
 
@@ -36,16 +42,34 @@ def createdflag():
 def allflags():
 	flags = []
 		
-	if len(redflags) < 1:
+	if len(redflag_list) < 1:
 		response = {
 		"message": "There no red flags",
 		}
 		return jsonify(response),400
-	if len(redflags) >= 1:
-		Flags.append()
+	if len(redflag_list) >= 1:
+		for flag in redflag_list:
+			flags.append(flag.to_json())
 		response = {
-			"message":"success",
-			}
+		"status":200,
+		"data": flags	
+		}
+
+@app.route('/v1/oneflag', methods=['GET'])
+def oneflags():
+	if len(redflag_list) < 1:
+		response = {
+		"status": 404,
+		"error": "There are no red flags"
+		}
+		return jsonify(response),400
+	if len(redflag_list) >= 1:
+		redflagid = random.randint(1,len(redflag_list))
+		flag = redflag_list[redflagid]
+		response = {
+		"status":200,
+		"data":flag
+		}
 		return jsonify(response),200
 
 
